@@ -1,18 +1,30 @@
+#Initialising our blokchain list
 blockchain = []
 
-# Extract out last blockchain value and return it.
+
 def get_last_blockchain_value():
+    """ Returns the last value of the current blockchain """
     return blockchain[-1]
 
 
 # Append to blockchain in the right order, default first. 
 def add_value(transaction_amount, last_transaction=[1]):
+    """ Appends the last value of the current blockchain to the front of the next blockchain """
     blockchain.append([last_transaction, transaction_amount])
 
-# Append to newly created initial block of the blockchain   
-add_value(8)
-# Return preivous block of the blockchain and append.
-add_value(0.87, get_last_blockchain_value())
-add_value(1010019874764.35365, get_last_blockchain_value())
+
+def get_user_input():
+    """ Returns transaction amount the user inputs """
+    return float(input('Your transaction amount please: '))
+
+
+tx_amount = get_user_input()   
+add_value(tx_amount)
+
+tx_amount = get_user_input()
+add_value(last_transaction=get_last_blockchain_value(), transaction_amount=tx_amount)
+
+tx_amount = get_user_input()
+add_value(tx_amount, get_last_blockchain_value())
 
 print(blockchain)
